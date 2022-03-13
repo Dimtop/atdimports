@@ -41,7 +41,7 @@ function WC_API(){
         for(var v of currVariations){
           var vAtdData = await this.atdApi.getProduct(v.sku);
           if(vAtdData.products&&vAtdData.products.length>0){
-            v.regular_price = Number(vAtdData.products[0].price.retail);
+            v.regular_price = vAtdData.products[0].price.retail.toString();
             await this.updateVariation(v.id,p.id,v)
             console.log("----Updated variation " + v.sku + " price with " + v.regular_price)
           }else{
